@@ -4,7 +4,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Lista de Jogos PS2</title>
 
 <style>
@@ -55,7 +54,7 @@ font-weight:bold;
 
 .lista{
 display:grid;
-grid-template-columns:repeat(3,1fr);
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
 gap:20px;
 margin-top:20px;
 }
@@ -89,8 +88,6 @@ border-radius:50%;
 font-weight:bold;
 }
 
-/* VIDEO INTRO */
-
 #intro{
 position:fixed;
 top:0;
@@ -104,12 +101,9 @@ align-items:center;
 justify-content:center;
 }
 
-#videoIntro{
-max-width:90vw;
-max-height:90vh;
-width:auto;
-height:auto;
-display:block;
+#intro video{
+max-width:90%;
+max-height:90%;
 }
 
 </style>
@@ -117,11 +111,9 @@ display:block;
 
 <body>
 
-<!-- VIDEO DE ABERTURA -->
-
 <div id="intro">
 
-<video id="videoIntro" autoplay muted playsinline preload="auto">
+<video id="videoIntro" autoplay muted playsinline>
 
 <source src="ps2.mp4" type="video/mp4">
 
@@ -189,12 +181,12 @@ jogos.forEach(jogo=>{
 
 jogo.addEventListener("click",()=>{
 
+jogo.classList.toggle("selecionado")
+
 if(jogo.classList.contains("selecionado")){
-jogo.classList.remove("selecionado")
-selecionados--
-}else{
-jogo.classList.add("selecionado")
 selecionados++
+}else{
+selecionados--
 }
 
 total.innerText = selecionados
@@ -204,22 +196,22 @@ contador.innerText = selecionados
 
 })
 
-/* INTRO VIDEO */
+/* VIDEO INTRO */
 
-window.onload = function(){
-
-let video = document.getElementById("videoIntro")
 let intro = document.getElementById("intro")
+let video = document.getElementById("videoIntro")
 
-video.onended = function(){
-intro.style.display="none"
+video.onended = () => {
+intro.style.display = "none"
 }
 
-setTimeout(function(){
-intro.style.display="none"
-},7000)
-
+video.onerror = () => {
+intro.style.display = "none"
 }
+
+setTimeout(()=>{
+intro.style.display = "none"
+},6000)
 
 </script>
 
