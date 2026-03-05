@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Lista de Jogos PS2</title>
 
 <style>
@@ -33,6 +34,7 @@ padding:20px;
 display:flex;
 gap:20px;
 margin-bottom:20px;
+flex-wrap:wrap;
 }
 
 .inputs input{
@@ -41,6 +43,7 @@ padding:12px;
 border-radius:8px;
 border:none;
 font-size:16px;
+min-width:200px;
 }
 
 .categoria{
@@ -50,11 +53,12 @@ padding:10px;
 text-align:center;
 font-size:24px;
 font-weight:bold;
+border-radius:8px;
 }
 
 .lista{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+grid-template-columns:repeat(3,1fr);
 gap:20px;
 margin-top:20px;
 }
@@ -88,7 +92,33 @@ border-radius:50%;
 font-weight:bold;
 }
 
-#intro{
+/* RESPONSIVO */
+
+@media (max-width:900px){
+.lista{
+grid-template-columns:repeat(2,1fr);
+}
+}
+
+@media (max-width:600px){
+.lista{
+grid-template-columns:1fr;
+}
+
+header{
+font-size:24px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- VIDEO DE ABERTURA -->
+
+<div id="intro" style="
 position:fixed;
 top:0;
 left:0;
@@ -99,27 +129,27 @@ z-index:9999;
 display:flex;
 align-items:center;
 justify-content:center;
-}
+">
 
-#intro video{
+<video autoplay muted playsinline style="
 max-width:90%;
 max-height:90%;
-}
-
-</style>
-</head>
-
-<body>
-
-<div id="intro">
-
-<video id="videoIntro" autoplay muted playsinline>
+object-fit:contain;
+">
 
 <source src="ps2.mp4" type="video/mp4">
 
 </video>
 
 </div>
+
+<script>
+
+setTimeout(function(){
+document.getElementById("intro").style.display="none"
+},6000)
+
+</script>
 
 <header>
 🎮 Lista de Jogos PS2
@@ -181,12 +211,12 @@ jogos.forEach(jogo=>{
 
 jogo.addEventListener("click",()=>{
 
-jogo.classList.toggle("selecionado")
-
 if(jogo.classList.contains("selecionado")){
-selecionados++
-}else{
+jogo.classList.remove("selecionado")
 selecionados--
+}else{
+jogo.classList.add("selecionado")
+selecionados++
 }
 
 total.innerText = selecionados
@@ -195,23 +225,6 @@ contador.innerText = selecionados
 })
 
 })
-
-/* VIDEO INTRO */
-
-let intro = document.getElementById("intro")
-let video = document.getElementById("videoIntro")
-
-video.onended = () => {
-intro.style.display = "none"
-}
-
-video.onerror = () => {
-intro.style.display = "none"
-}
-
-setTimeout(()=>{
-intro.style.display = "none"
-},6000)
 
 </script>
 
