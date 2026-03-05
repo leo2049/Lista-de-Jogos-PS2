@@ -106,7 +106,22 @@ border-radius:50%;
 </head>
 
 <body>
+<video autoplay muted id="intro" style="position:fixed;width:100%;height:100%;object-fit:cover;z-index:9999">
 
+<source src="ps2.mp4" type="video/mp4">
+
+</video>
+
+<script>
+
+setTimeout(()=>{
+
+document.getElementById("intro").style.display="none"
+
+},7000)
+
+</script>
+  
 <header>
 🎮 Lista de Jogos PS2
 </header>
