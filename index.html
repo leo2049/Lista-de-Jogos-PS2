@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -17,26 +16,19 @@ background:linear-gradient(to bottom,#0f2027,#203a43,#2c5364);
 color:white;
 }
 
-/* CABEÇALHO */
-
 header{
 background:linear-gradient(90deg,#5a0000,#c40000);
 padding:20px;
 text-align:center;
 font-size:32px;
 font-weight:bold;
-letter-spacing:2px;
 }
-
-/* CONTAINER */
 
 .container{
 max-width:1200px;
 margin:auto;
 padding:20px;
 }
-
-/* INPUTS */
 
 .inputs{
 display:flex;
@@ -52,21 +44,14 @@ border:none;
 font-size:16px;
 }
 
-/* CATEGORIAS */
-
 .categoria{
 margin-top:40px;
-background:linear-gradient(90deg,#700000,#ff0000,#700000);
-padding:12px;
+background:linear-gradient(90deg,#700000,#ff0000);
+padding:10px;
 text-align:center;
 font-size:24px;
 font-weight:bold;
-border-radius:8px;
-letter-spacing:2px;
-box-shadow:0 0 10px rgba(0,0,0,0.5);
 }
-
-/* LISTA DE JOGOS */
 
 .lista{
 display:grid;
@@ -89,54 +74,24 @@ background:#333;
 }
 
 .jogo.selecionado{
-background:#008000;
+background:green;
 }
-
-/* CONTADOR */
 
 #contador{
 position:fixed;
 bottom:20px;
 right:20px;
-background:#000;
+background:black;
 color:#00ff00;
-font-size:24px;
-padding:15px 20px;
-border-radius:50px;
-font-weight:bold;
-box-shadow:0 0 10px #00ff00;
-}
-
-/* RESPONSIVO */
-
-@media (max-width:700px){
-
-.lista{
-grid-template-columns:1fr;
-}
-
-header{
 font-size:22px;
+padding:12px 18px;
+border-radius:50%;
+font-weight:bold;
 }
 
-.categoria{
-font-size:20px;
-}
+/* VIDEO INTRO */
 
-.inputs{
-flex-direction:column;
-}
-
-}
-
-</style>
-</head>
-
-<body>
-
-<!-- VIDEO DE ABERTURA -->
-
-<div id="intro" style="
+#intro{
 position:fixed;
 top:0;
 left:0;
@@ -147,19 +102,28 @@ z-index:9999;
 display:flex;
 align-items:center;
 justify-content:center;
-">
+}
 
-<video id="videoIntro" autoplay muted playsinline preload="auto"
-style="
-max-width:100%;
-max-height:100%;
+#videoIntro{
+max-width:90vw;
+max-height:90vh;
 width:auto;
 height:auto;
-object-fit:contain;
-background:black;
-">
+display:block;
+}
 
-<source src="intro.mp4" type="video/mp4">
+</style>
+</head>
+
+<body>
+
+<!-- VIDEO DE ABERTURA -->
+
+<div id="intro">
+
+<video id="videoIntro" autoplay muted playsinline preload="auto">
+
+<source src="ps2.mp4" type="video/mp4">
 
 </video>
 
@@ -182,8 +146,6 @@ background:black;
 Jogos selecionados: <span id="total">0</span>
 </h3>
 
-<!-- AÇÃO -->
-
 <div class="categoria">Ação / Aventura</div>
 
 <div class="lista">
@@ -197,8 +159,6 @@ Jogos selecionados: <span id="total">0</span>
 <div class="jogo">Shadow of Rome</div>
 
 </div>
-
-<!-- TIRO -->
 
 <div class="categoria">Tiro</div>
 
@@ -218,25 +178,6 @@ Jogos selecionados: <span id="total">0</span>
 <div id="contador">0</div>
 
 <script>
-
-/* VIDEO INTRO */
-
-window.onload = function(){
-
-let video = document.getElementById("videoIntro")
-let intro = document.getElementById("intro")
-
-video.onended = function(){
-intro.style.display = "none"
-}
-
-setTimeout(function(){
-intro.style.display = "none"
-},7000)
-
-}
-
-/* SELEÇÃO DE JOGOS */
 
 let jogos = document.querySelectorAll(".jogo")
 let total = document.getElementById("total")
@@ -263,8 +204,24 @@ contador.innerText = selecionados
 
 })
 
+/* INTRO VIDEO */
+
+window.onload = function(){
+
+let video = document.getElementById("videoIntro")
+let intro = document.getElementById("intro")
+
+video.onended = function(){
+intro.style.display="none"
+}
+
+setTimeout(function(){
+intro.style.display="none"
+},7000)
+
+}
+
 </script>
 
 </body>
 </html>
-```
