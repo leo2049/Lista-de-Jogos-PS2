@@ -120,16 +120,20 @@ style="width:100%;height:100%;object-fit:cover;">
 
 <script>
 
+window.onload = function(){
+
 let video = document.getElementById("videoIntro")
 let intro = document.getElementById("intro")
 
-video.onended = () => {
+video.onended = function(){
 intro.style.display = "none"
 }
 
-setTimeout(()=>{
+setTimeout(function(){
 intro.style.display = "none"
 },7000)
+
+}
 
 </script>
 
