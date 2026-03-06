@@ -246,15 +246,16 @@ contador.innerText = selecionados.length
 function enviarWhats(){
 
 let cliente = document.getElementById("cliente").value
-let numero = document.getElementById("whats").value
 
-let lista = selecionados.join("%0A")
+let listaOrdenada = [...selecionados].sort()
+
+let lista = listaOrdenada.join("%0A")
 
 let mensagem =
 "Cliente: "+cliente+"%0A%0A"+
 "Jogos escolhidos:%0A"+lista
 
-let url = "https://wa.me/"+numero+"?text="+mensagem
+let url = "https://api.whatsapp.com/send?text="+mensagem
 
 window.open(url,"_blank")
 
